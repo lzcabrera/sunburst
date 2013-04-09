@@ -1,0 +1,49 @@
+{
+	"name":"test",
+	"children":[
+		{
+			"name":"season",
+			"children":[ 
+				{"label":"Winter", "time": 1,"x":10,   "y":-20}, 
+				{"label":"Spring", "time": 2,"x":-40, "y":30}, 
+				{"label":"Summer", "time": 3,"x":10,   "y":30}, 
+				{"label":"Fall"  , "time": 4,"x":-40, "y":-20}
+			]
+		},
+		{	"name":"month",
+			"children":[
+			{"label": "Jan",  "time": 2,  "season":"winter"},
+			{"label": "Feb", "time": 3,  "season":"winter"},
+			{"label": "Mar",    "time": 4,  "season":"spring"},
+			{"label": "Apr",    "time": 5,  "season":"spring"},
+			{"label": "May",      "time": 6,  "season":"spring"},
+			{"label": "Jun",     "time": 7,  "season":"summer"},
+			{"label": "Jul",     "time": 8,  "season":"summer"},
+			{"label": "Aug",   "time": 9,  "season":"summer"},
+			{"label": "Sep","time": 10, "season":"fall"},
+			{"label": "Oct",  "time": 11, "season":"fall"},
+			{"label": "Nov", "time": 12, "season":"fall"},
+			{"label": "Dec", "time": 1,  "season":"winter"}
+			]
+		},
+		{
+			"name":"vegetables",
+			"children":[
+				{"label": "artichokes", 
+				 "info": [1, 0, 0,
+				 		  0, 1, 1,
+				 		  1, 1, 1,
+				 		  1, 0, 1]
+				},
+				{"label": "asparagus",
+				 "info": [0, 0, 0,
+				 		  0, 1, 1,
+				 		  1, 0, 0,
+				 		  0, 0, 0]
+				}
+			] 
+		}
+
+		
+	]
+}

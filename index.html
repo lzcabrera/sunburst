@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+
+/*
+      .arc_winter{
+        fill:#25a0ca;
+        stroke:#135267;
+      }
+      .arc_dec{
+        fill:#0D3745;
+      }
+      .arc_jan{
+        fill:#196E8A;
+      }
+      .arc_feb{
+        fill:#75CAE6;
+      }
+
+      .arc_spring{
+        fill:#f3ce13;
+        stroke:#9B8308;
+      }
+      .arc_mar{
+        fill:#9B8308;
+      }
+      .arc_apr{
+        fill:#D5B40B;
+      }
+      .arc_may{
+        fill:#F8E277;
+      }
+
+      .arc_summer{
+        fill:#89c507;
+        stroke:#527604;
+      }
+      .arc_jun{
+        fill:#446204;
+      }
+      .arc_jul{
+        fill:#608A05;
+      }
+      .arc_aug{
+        fill:#BCF83A;
+      }
+
+
+      .arc_fall{
+        fill:#e54a4f;
+        stroke:#B3191F;
+      }
+      .arc_sep{
+        fill:#8F1418;
+      }
+
+      .arc_oct{
+        fill:#D61F25;
+      }
+      .arc_nov{
+        fill:#ED8286;
+      }
+*/
+
+</style>
+
+
+<form>
+  <label><input type="radio" name="mode" value="size"> Size</label>
+  <label><input type="radio" name="mode" value="count" checked> Count</label>
+</form>
+
+
+<script src="d3.v3.js"></script>
+<script>
+
+var width = '50%',
+    height = 700,
+    radius = Math.min(width, height) / 2,
+    color = d3.scale.category20c();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height * .52 + ")");
+
+var partition = d3.layout.partition()
+    .sort(null)
+    .size([2 * Math.PI, radius * radius])
+    .value(function(d) { return 1; });
+
+var arc = d3.svg.arc()
+    .startAngle(function(d) { return d.x; })
+    .endAngle(function(d) { return d.x + d.dx; })
+    .innerRadius(function(d) { return Math.sqrt(d.y); })
+    .outerRadius(function(d) { return Math.sqrt(d.y + d.dy); });
+
+d3.json("flare.json", function(error, root) {
+
+  var path = svg.datum(root).selectAll("path")
+      .data(partition.nodes)
+      .enter().append("path")
+      .attr("display", function(d) { return d.depth ? null : "none"; }) // hide inner ring
+      .attr("d", arc)
+      .style("stroke", "#fff")
+      .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
+      .style("fill-rule", "evenodd")
+      .each(stash);
+
+
+
+  d3.selectAll("input").on("change", function change() {
+    var value = this.value === "count"
+        ? function() { return 1; }
+        : function(d) { return d.size; };
+
+    path
+        .data(partition.value(value).nodes)
+      .transition()
+        .duration(1500)
+        .attrTween("d", arcTween);
+  });
+
+
+
+
+});
+
+// Stash the old values for transition.
+function stash(d) {
+  d.x0 = d.x;
+  d.dx0 = d.dx;
+}
+
+// Interpolate the arcs in data space.
+function arcTween(a) {
+  var i = d3.interpolate({x: a.x0, dx: a.dx0}, a);
+  return function(t) {
+    var b = i(t);
+    a.x0 = b.x;
+    a.dx0 = b.dx;
+    return arc(b);
+  };
+}
+
+d3.select(self.frameElement).style("height", height + "px");
+
+</script>

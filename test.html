@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--<script src="http://d3js.org/d3.v3.min.js"></script>-->
+		<script type="text/javascript" src="d3.v3.js"></script>
+		<script src="jquery.js"></script>
+		<style>
+			.chart{width:50%;
+				float:left;}
+			.arc{
+				fill:gray;
+				stroke:black;
+				color:#fff;
+			}
+
+			text{
+				fill:#000;
+
+			}
+
+			.arc_winter,.arc_spring, .arc_summer, .arc_fall{
+				fill:#969696;
+			}
+
+			.arc span{color:gray;}
+			.passive{fill:#fff;}
+			.active{fill:#9edae5;}
+
+			ul{
+				list-style-position: outside;
+				list-style-type:circle;
+				margin-left:430px;
+			}
+			.season-section ul{display:none;}
+			.section-open ul{display:block;}
+		</style>
+	</head>
+	<body>
+		<div id="chart" class="chart"></div>
+		<div id="table"></div>
+
+		<div class="season-section section-open">
+			<h3><a href="">Spring</a></h3>
+			<ul>
+				<li><a href="#artichokes">artichokes</a></li>
+				<li><a href="#asparagus">asparagus</a></li>
+				<li><a href="#chives">chives &amp; ramps</a></li>
+				<li><a href="#cucumber">cucumber &amp; zuchinni</a></li>
+				<li><a href="#snappeas">snap peas</a></li>
+				<li><a href="#greenbeans">green beans &amp; peas</a></li>
+				<li><a href="#mushrooms">mushrooms</a></li>
+				<li><a href="#newpotatoes">new potatoes</a></li>
+				
+			</ul>
+		</div>
+		<div class="season-section">
+			<h3><a href="">Summer</a></h3>
+			<ul>
+				<li><a href="">corn</a></li>
+				<li><a href="">eggplant</a></li>
+				<li><a href="">bell peppers</a></li>
+				<li><a href="">okra</a></li>
+			</ul>
+		</div>
+		<div class="season-section">
+			<h3><a href="">Fall</a></h3>
+			<ul>
+				<li><a href="">brocolli, cauliflower, cabbage &amp; kale</a></li>
+				<li><a href="">daikon &amp; parsnip</a></li>
+				<li><a href="">squash</a></li>
+				<li><a href="">pumpkin</a></li>
+				<li><a href="">sweet potatoes</a></li>
+			</ul>
+		</div>
+		<div class="season-section">
+			<h3><a href="">Winter</a></h3>
+			<ul>
+				<li><a href="">carrots &amp; celery roots</a></li>
+				<li><a href="">chicory</a></li>
+				<li><a href="">rutabaga &amp; turnip</a></li>
+				<li><a href="">leeks</a></li>
+			</ul>
+		</div>
+		<div class="season-section">
+			<h3><a href="">All Year Round</a></h3>
+			<ul>
+				<li><a href="">beets</a></li>
+				<li><a href="">brocolini</a></li>
+				<li><a href="">celery</a></li>
+				<li><a href="">chard</a></li>
+				<li><a href="">fennel</a></li>
+				
+				<li><a href="">garlic</a></li>
+				<li><a href="">ginger</a></li>
+				<li><a href="">greens</a></li>
+				<li><a href="">onions</a></li>
+				<li><a href="">potatoes</a></li>
+				<li><a href="">spinach</a></li>
+				<li><a href="">sprouts</a></li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="test.js"></script>
+	</body>
+
+</html>
